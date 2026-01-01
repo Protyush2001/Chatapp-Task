@@ -5,6 +5,7 @@ const configDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const roomRoutes = require("./routes/roomRoutes");
 const messageRoutes = require("./routes/messageRoutes");
+const userRoutes = require("./routes/userRoutes");
 const http = require("http");
 const {Server} = require("socket.io");
 const app = express();
@@ -19,10 +20,10 @@ const auth = require("./middleware/auth");
 
 
 dotenv.config();
-
+app.use(cors());
 app.use(express.json());
 
-app.use(cors());
+
 
 configDB();
 
@@ -33,6 +34,7 @@ const PORT = process.env.PORT || 4000;
 app.use("/api/auth",authRoutes);
 app.use("/api/rooms",roomRoutes);
 app.use("/api/messages",messageRoutes);
+app.use("/api/users",userRoutes);
 
 server.listen(PORT,()=>{
     console.log("Server is running on:",PORT);

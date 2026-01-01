@@ -9,6 +9,10 @@ const roomSchema = mongoose.Schema({
         type:Boolean,
         default:false
     },
+    isPublic:{
+        type:Boolean,
+        default:true
+    },
     users:[
         {
             type:mongoose.Schema.Types.ObjectId,
