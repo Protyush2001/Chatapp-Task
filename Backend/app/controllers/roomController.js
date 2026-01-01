@@ -1,7 +1,6 @@
 const Room = require("../models/room");
 const roomCtlr = {};
 
-// roomCtlr.createRoom = async (req,res) => {
 //     try{
 //         const loggedInUserId = req.user.id;
 //         const {name} = req.body;
