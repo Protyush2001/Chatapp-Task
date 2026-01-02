@@ -15,25 +15,29 @@ export default function Signup () {
         }
     }
 
-    return <div>
-        <h2>SignUp Page</h2>
+    return <div className="min-h-screen flex items-center justify-center bg-gray-200">
+        <div className="bg-white p-8 rounded-2xl shadow-lg w-[90%] max-w-md">
+            <h2 className="text-xl text-center mb-6 font-bold text-gray-600">SignUp Page</h2>
         <form action="" onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="username">Username:</label>
-                <input type="text" placeholder="Enter your username" value={formData.username} onChange={(e)=>{setFormData({...formData,username:e.target.value})}}/>
+                <label htmlFor="username" className="block text-gray-900 mb-1 font-bold">Username:</label>
+                <input type="text" placeholder="Enter your username" value={formData.username} onChange={(e)=>{setFormData({...formData,username:e.target.value})}} className="w-full px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 mb-4"/>
             </div>
             <div>
-                <label htmlFor="email">Email:</label>
-                <input type="email" placeholder="Enter your email" value={formData.email} onChange={(e)=>{setFormData({...formData,email:e.target.value})}}/>
+                <label htmlFor="email" className="block text-gray-900 mb-1 font-bold">Email:</label>
+                <input type="email" placeholder="Enter your email" value={formData.email} onChange={(e)=>{setFormData({...formData,email:e.target.value})}} className="w-full px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 mb-4"/>
             </div>
             <div>
-                <label htmlFor="password">Password:</label>
-                <input type="password" placeholder="Enter your password" value={formData.password} onChange={(e)=>{setFormData({...formData,password:e.target.value})}}/>
+                <label htmlFor="password" className="block text-gray-900 mb-1 font-bold">Password:</label>
+                <input type="password" placeholder="Enter your password" value={formData.password} onChange={(e)=>{setFormData({...formData,password:e.target.value})}} className="w-full px-4 py-2 border border-gray-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 mb-4"/>
             </div>
             <div>
-                <input type="submit" value="Signup"/>
+                <input type="submit" value="Signup" className="w-full text-white bg-green-500 rounded-lg p-2 cursor-pointer hover:bg-green-800 mb-4 mt-2"/>
             </div>
 
         </form>
+        <p>Already have an accuunt? {" "} <span onClick={()=>navigate("/login")} className="text-green-800 cursor-pointer">Login</span></p>
+        </div>
+        
     </div>
 }

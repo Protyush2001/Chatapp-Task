@@ -1,37 +1,7 @@
 const Room = require("../models/room");
 const roomCtlr = {};
 
-//     try{
-//         const loggedInUserId = req.user.id;
-//         const {name} = req.body;
 
-//         if(!name){
-//             return res.status(400).json({message:"userId not found"});
-//         }
-
-//         let room = await Room.create({
-//             name,
-//             isGroup:false,
-//             // users:{$all:[loggedInUserId,userId]}
-//             users:[loggedInUserId]
-//         })
-//         // if(room){
-//         //     return res.status(200).json(room);
-//         // }
-//         // room = await Room.create({
-//         //     isGroup:false,
-//         //     users:[loggedInUserId,userId]
-//         // });
-
-//         const populatedRoom = await Room.findById(room._id).populate("users","username email");
-
-//         return res.status(201).json(populatedRoom);
-        
-//     }catch(err){
-//         console.error(err);
-//         return res.status(500).json({message:"Server error"});
-//     }
-// };
 
 roomCtlr.createRoom = async (req, res) => {
   try {
