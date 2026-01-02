@@ -20,7 +20,12 @@ const auth = require("./middleware/auth");
 
 
 dotenv.config();
-app.use(cors());
+// app.use(cors());
+
+app.use(cors({
+  origin: "*", 
+  credentials: true
+}));
 app.use(express.json());
 
 
