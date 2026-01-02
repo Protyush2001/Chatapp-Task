@@ -7,7 +7,7 @@ authCtlr.signup = async(req,res)=>{
     try{
         const {username,email,password} = req.body;
 
-        // First we will check that if the user is existed in the db or not...
+        
         const existingUser = await User.findOne({email});
         if(existingUser){
             return res.status(400).json({message:"User already exists"});
@@ -15,7 +15,7 @@ authCtlr.signup = async(req,res)=>{
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password,salt);
 
-        // Creating the User -- 
+
         const user = new User({
             username,
             email,

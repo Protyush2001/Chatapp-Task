@@ -12,7 +12,7 @@ msgCtlr.sendMessage = async (req, res) => {
         .status(400)
         .json({ message: "RoomId and content are required" });
     }
-///
+
     const room = await Room.findById(roomId);
 
 if (!room.users.includes(req.user.id)) {
