@@ -1,5 +1,6 @@
 const Message = require("../models/message");
 const msgCtlr = {};
+const Room = require("../models/room");
 
 msgCtlr.sendMessage = async (req, res) => {
   try {
@@ -11,6 +12,13 @@ msgCtlr.sendMessage = async (req, res) => {
         .status(400)
         .json({ message: "RoomId and content are required" });
     }
+///
+    const room = await Room.findById(roomId);
+
+if (!room.users.includes(req.user.id)) {
+  return res.status(403).json({ message: "Access denied" });
+}
+
 
     const message = await Message.create({
       sender: senderId,
