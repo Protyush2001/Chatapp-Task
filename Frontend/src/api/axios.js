@@ -1,7 +1,7 @@
 import axios from "axios";
 
  const axiosInstance = axios.create({
-    baseURL: "http://localhost:4086",
+    baseURL: "https://chatapp-task-1.onrender.com",
     headers: {
         "Content-Type": "application/json",
     },
