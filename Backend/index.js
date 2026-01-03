@@ -45,45 +45,45 @@ server.listen(PORT,()=>{
     console.log("Server is running on:",PORT);
 });
 
-// io.on("connection",(socket)=>{
-//     console.log("User connected:",socket.id);
-//     socket.on("joinroom",(roomId)=>{
-//         socket.join(roomId);
-//         console.log(`user joined room: ${roomId}`);
-//     });
-//     socket.on("sendMessage",(data)=>{
-//         const {roomId,message} = data;
-//         socket.to(roomId).emit('receiveMessage',message);
-
-//     });
-
- 
-
-//     socket.on("disconnect",()=>{
-//         console.log("User disconnected:",socket.id);
-//     })
-
-// })
-
 io.on("connection",(socket)=>{
     console.log("User connected:",socket.id);
-    
     socket.on("joinroom",(roomId)=>{
         socket.join(roomId);
         console.log(`user joined room: ${roomId}`);
     });
-    
     socket.on("sendMessage",(data)=>{
-        const {roomId, message} = data;
-        // Emit to ALL users in the room (including sender)
-        io.to(roomId).emit('receiveMessage', {
-            ...message,
-            roomId: roomId  // Include roomId so frontend knows which room this is for
-        });
+        const {roomId,message} = data;
+        socket.to(roomId).emit('receiveMessage',message);
+
     });
+
+ 
 
     socket.on("disconnect",()=>{
         console.log("User disconnected:",socket.id);
     })
-});
+
+})
+
+// io.on("connection",(socket)=>{
+//     console.log("User connected:",socket.id);
+    
+//     socket.on("joinroom",(roomId)=>{
+//         socket.join(roomId);
+//         console.log(`user joined room: ${roomId}`);
+//     });
+    
+//     socket.on("sendMessage",(data)=>{
+//         const {roomId, message} = data;
+//         // Emit to ALL users in the room (including sender)
+//         io.to(roomId).emit('receiveMessage', {
+//             ...message,
+//             roomId: roomId  // Include roomId so frontend knows which room this is for
+//         });
+//     });
+
+//     socket.on("disconnect",()=>{
+//         console.log("User disconnected:",socket.id);
+//     })
+// });
 
