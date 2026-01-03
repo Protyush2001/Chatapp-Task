@@ -89,15 +89,6 @@ export default function Chat() {
  
 
 
-//   useEffect(() => {
-//   socket.on("receiveMessage", (msg) => {
-  
-//     if (activeRoom && msg.roomId === activeRoom._id) {
-//       setMessages((prev) => [...prev, msg]);
-//     }
-//   });
-//   return () => socket.off("receiveMessage");
-// }, [activeRoom]); 
 
 useEffect(() => {
   const handler = (msg) => {
