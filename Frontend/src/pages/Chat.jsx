@@ -285,12 +285,7 @@ export default function Chat() {
   }, [activeRoom]);
 
  
-  // useEffect(() => {
-  //   socket.on("receiveMessage", (msg) =>
-  //     setMessages((prev) => [...prev, msg])
-  //   );
-  //   return () => socket.off("receiveMessage");
-  // }, []);
+
 
   useEffect(() => {
   socket.on("receiveMessage", (msg) => {

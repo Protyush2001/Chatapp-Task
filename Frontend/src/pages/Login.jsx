@@ -6,10 +6,31 @@ import { loginUser } from "../api/auth";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [errors,setErrors] = useState({})
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const validate = () =>{
+    const newError = {};
+    if(!formData.email){
+      newError.email = "Email is required";
+    }
+
+    if(!formData.password){
+      newError.password = "Password is required";
+    }else if(formData.password.length<4){
+      newError.password = "Password must be greater than 4 characters";
+    }
+
+    setErrors(newError);
+    return Object.keys(newError).length === 0
+
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(!validate()){
+      return;
+    }
 
     try {
       const data = await loginUser(formData);
@@ -38,6 +59,8 @@ export default function Login() {
               }}
               className="w-full border border-gray-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
             />
+
+            {errors.email && <p className="text-red-500">{errors.email}</p>}
           </div>
           <label className="block text-gray-900 mb-1">Password:</label>
           <input
@@ -49,6 +72,7 @@ export default function Login() {
             }}
             className="w-full border border-gray-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
           />
+          {errors.password && <p className="text-red-500">{errors.password}</p>}
 
           <div >
             <input type="submit" value="Login" className="w-full bg-green-600 text-white py-2 border border-gray-600 rounded-lg font-medium hover:bg-green-800 hover:text-white transition" />

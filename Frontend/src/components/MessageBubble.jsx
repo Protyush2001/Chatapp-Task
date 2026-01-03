@@ -68,7 +68,7 @@ export default function MessageBubble({ message, isOwn }) {
             {message.sender.username}
           </div>
         )}
-
+      <div className="flex gap-5 items-center">
         <p className="leading-relaxed whitespace-pre-wrap break-words">
           {message.content}
         </p>
@@ -83,6 +83,10 @@ export default function MessageBubble({ message, isOwn }) {
             minute: "2-digit",
           })}
         </div>
+      </div>
+
+
+
       </div>
     </div>
   );
