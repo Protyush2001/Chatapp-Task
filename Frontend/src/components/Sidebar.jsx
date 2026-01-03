@@ -2,6 +2,8 @@
 
 import RoomsList from "./RoomsList";
 import DMList from "./DMList";
+import {logout} from "../redux/authSlice";
+import { useDispatch } from "react-redux";
 
 export default function Sidebar({
   user,
@@ -13,6 +15,12 @@ export default function Sidebar({
   navigate,
   startDM
 }) {
+  const dispatch = useDispatch();
+  const handleLogOut = async () => {
+    localStorage.removeItem("token");
+    dispatch(logout);
+    navigate("/login")
+  }
   return (
     <div className="w-72 md:w-80 bg-white border-r flex flex-col shadow-sm">
 
@@ -41,7 +49,7 @@ export default function Sidebar({
             + New Room
           </button>
           <button
-            onClick={() => navigate("/login")}
+            onClick={handleLogOut}
             className="flex-1 bg-red-600 hover:bg-red-700 text-white text-sm py-2 rounded-lg transition"
           >
             Logout
