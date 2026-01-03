@@ -1,6 +1,3 @@
-
-
-
 import { useState } from "react";
 
 export default function RoomsList({
@@ -20,7 +17,7 @@ export default function RoomsList({
         ROOMS
       </h3>
 
-      {/* Search */}
+
       <input
         type="text"
         value={search}
@@ -29,7 +26,6 @@ export default function RoomsList({
         className="w-full mb-2 px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-1 focus:ring-green-500"
       />
 
-      {/* Rooms */}
       <div className="space-y-1">
         {filteredRooms.length === 0 && (
           <p className="text-xs text-gray-400 px-2">
@@ -41,17 +37,19 @@ export default function RoomsList({
           <div
             key={room._id}
             onClick={() => setActiveRoom(room)}
-            className={`px-3 py-2 rounded-lg cursor-pointer text-sm transition font-semibold
+            className={`px-3 py-2 rounded-lg cursor-pointer text-sm transition font-semibold flex items-center gap-2
               ${activeRoom?._id === room._id
-                ? "bg-green-200 font-semibold"
+                ? "bg-green-200"
                 : "hover:bg-gray-100"
               }`}
           >
-            {room.name}
+
+            <span className="text-green-700 font-bold">#</span>
+
+            <span>{room.name}</span>
           </div>
         ))}
       </div>
     </div>
   );
 }
-
