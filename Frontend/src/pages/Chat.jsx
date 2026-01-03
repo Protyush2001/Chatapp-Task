@@ -285,22 +285,22 @@ export default function Chat() {
   }, [activeRoom]);
 
  
-  useEffect(() => {
-    socket.on("receiveMessage", (msg) =>
-      setMessages((prev) => [...prev, msg])
-    );
-    return () => socket.off("receiveMessage");
-  }, []);
+  // useEffect(() => {
+  //   socket.on("receiveMessage", (msg) =>
+  //     setMessages((prev) => [...prev, msg])
+  //   );
+  //   return () => socket.off("receiveMessage");
+  // }, []);
 
-//   useEffect(() => {
-//   socket.on("receiveMessage", (msg) => {
-//     // Only add message if it's for the currently active room
-//     if (activeRoom && msg.roomId === activeRoom._id) {
-//       setMessages((prev) => [...prev, msg]);
-//     }
-//   });
-//   return () => socket.off("receiveMessage");
-// }, [activeRoom]); 
+  useEffect(() => {
+  socket.on("receiveMessage", (msg) => {
+    // Only add message if it's for the currently active room
+    if (activeRoom && msg.roomId === activeRoom._id) {
+      setMessages((prev) => [...prev, msg]);
+    }
+  });
+  return () => socket.off("receiveMessage");
+}, [activeRoom]); 
 
   const sendMessage = async (e) => {
     e.preventDefault();
