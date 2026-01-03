@@ -1,47 +1,56 @@
 
 
-import { Users } from "lucide-react";
 
-export default function RoomsList({ rooms, activeRoom, setActiveRoom }) {
+import { useState } from "react";
+
+export default function RoomsList({
+  rooms,
+  activeRoom,
+  setActiveRoom
+}) {
+  const [search, setSearch] = useState("");
+
+  const filteredRooms = rooms.filter(room =>
+    room.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div className="px-3">
-      <h3 className="text-xs text-gray-500 uppercase tracking-wider mb-2 font-semibold">
-        Rooms
+    <div>
+      <h3 className="text-xs text-gray-500 mb-2 px-2">
+        ROOMS
       </h3>
 
-      {rooms.map((room) => {
-        const isActive = activeRoom?._id === room._id;
+      {/* Search */}
+      <input
+        type="text"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        placeholder="Search rooms..."
+        className="w-full mb-2 px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-1 focus:ring-green-500"
+      />
 
-        return (
+      {/* Rooms */}
+      <div className="space-y-1">
+        {filteredRooms.length === 0 && (
+          <p className="text-xs text-gray-400 px-2">
+            No rooms found
+          </p>
+        )}
+
+        {filteredRooms.map(room => (
           <div
             key={room._id}
             onClick={() => setActiveRoom(room)}
-            className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition
-              ${
-                isActive
-                  ? "bg-green-100 text-green-900"
-                  : "hover:bg-gray-100 text-gray-800"
+            className={`px-3 py-2 rounded-lg cursor-pointer text-sm transition
+              ${activeRoom?._id === room._id
+                ? "bg-green-200 font-semibold"
+                : "hover:bg-gray-100"
               }`}
           >
-
-            <div
-              className={`w-9 h-9 rounded-full flex items-center justify-center
-                ${
-                  isActive
-                    ? "bg-green-600 text-white"
-                    : "bg-green-200 text-green-700"
-                }`}
-            >
-              <Users size={16} />
-            </div>
-
-
-            <p className="text-sm font-medium truncate">
-              {room.name}
-            </p>
+            {room.name}
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 }
