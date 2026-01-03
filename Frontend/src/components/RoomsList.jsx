@@ -1,4 +1,7 @@
+
+
 import { useState } from "react";
+import { Users } from "lucide-react";
 
 export default function RoomsList({
   rooms,
@@ -12,11 +15,10 @@ export default function RoomsList({
   );
 
   return (
-    <div>
-      <h3 className="text-xs text-gray-500 mb-2 px-2">
+    <div className="px-2">
+      <h3 className="text-xs text-gray-500 mb-2">
         ROOMS
       </h3>
-
 
       <input
         type="text"
@@ -33,23 +35,40 @@ export default function RoomsList({
           </p>
         )}
 
-        {filteredRooms.map(room => (
-          <div
-            key={room._id}
-            onClick={() => setActiveRoom(room)}
-            className={`px-3 py-2 rounded-lg cursor-pointer text-sm transition font-semibold flex items-center gap-2
-              ${activeRoom?._id === room._id
-                ? "bg-green-200"
-                : "hover:bg-gray-100"
-              }`}
-          >
+        {filteredRooms.map(room => {
+          const isActive = activeRoom?._id === room._id;
 
-            <span className="text-green-700 font-bold">👥</span>
+          return (
+            <div
+              key={room._id}
+              onClick={() => setActiveRoom(room)}
+              className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition text-sm font-medium
+                ${
+                  isActive
+                    ? "bg-green-100 text-green-900"
+                    : "hover:bg-gray-100 text-gray-800"
+                }`}
+            >
 
-            <span>{room.name}</span>
-          </div>
-        ))}
+              <div
+                className={`w-9 h-9 rounded-full flex items-center justify-center
+                  ${
+                    isActive
+                      ? "bg-green-600 text-white"
+                      : "bg-green-200 text-green-700"
+                  }`}
+              >
+                <Users size={16} />
+              </div>
+
+              <p className="truncate">
+                {room.name}
+              </p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
+
