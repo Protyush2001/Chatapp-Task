@@ -44,7 +44,7 @@ export default function RoomsList({
               }`}
           >
 
-            <span className="text-green-700 font-bold">#</span>
+            <span className="text-green-700 font-bold">👥</span>
 
             <span>{room.name}</span>
           </div>
