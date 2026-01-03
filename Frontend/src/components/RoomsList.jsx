@@ -41,7 +41,7 @@ export default function RoomsList({
           <div
             key={room._id}
             onClick={() => setActiveRoom(room)}
-            className={`px-3 py-2 rounded-lg cursor-pointer text-sm transition
+            className={`px-3 py-2 rounded-lg cursor-pointer text-sm transition font-semibold
               ${activeRoom?._id === room._id
                 ? "bg-green-200 font-semibold"
                 : "hover:bg-gray-100"
