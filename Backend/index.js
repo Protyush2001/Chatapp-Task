@@ -53,7 +53,8 @@ io.on("connection",(socket)=>{
     });
     socket.on("sendMessage",(data)=>{
         const {roomId,message} = data;
-        socket.to(roomId).emit('receiveMessage',message);
+        // socket.to(roomId).emit('receiveMessage',message);
+        socket.to(roomId).emit("receiveMessage", { ...message, roomId });
 
     });
 
