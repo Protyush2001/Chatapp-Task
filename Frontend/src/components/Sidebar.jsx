@@ -53,9 +53,7 @@ export default function Sidebar({
       <div className="flex-1 overflow-y-auto px-2">
 
         <div className="mt-3">
-          <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold px-2 mb-2">
-            Rooms
-          </p>
+
           <RoomsList
             rooms={rooms.filter(r => r.isGroup)}
             activeRoom={activeRoom}
@@ -65,9 +63,7 @@ export default function Sidebar({
 
 
         <div className="mt-6 pt-4 border-t">
-          <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold px-2 mb-2">
-            Direct Messages
-          </p>
+
           <DMList
             rooms={rooms.filter(r => !r.isGroup)}
             users={users}
