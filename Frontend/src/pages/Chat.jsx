@@ -194,7 +194,7 @@ useEffect(() => {
         <div className="md:hidden p-2 border-b bg-white">
           <button
             onClick={() => setShowChat(false)}
-            className="text-sm text-green-600 font-semibold"
+            className="text-sm text-green-500 font-semibold"
           >
             ← Back
           </button>
