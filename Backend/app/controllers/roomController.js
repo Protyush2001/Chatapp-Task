@@ -48,7 +48,7 @@ roomCtlr.createDM = async (req, res) => {
     const user1 = req.user.id;
     const { userId } = req.body;
 
-    // Check existing DM
+   
     let room = await Room.findOne({
       isGroup: false,
       users: { $all: [user1, userId], $size: 2 }
@@ -58,7 +58,7 @@ roomCtlr.createDM = async (req, res) => {
       return res.status(200).json(room);
     }
 
-    // Create new DM
+
     room = await Room.create({
       isGroup: false,
       users: [user1, userId]
