@@ -51,7 +51,8 @@ authCtlr.login = async (req,res) => {
         }
 
         const tokenData = {
-            userId: user._id
+            userId: user._id,
+            // id:user._id
         }
         const token = jwt.sign(tokenData,process.env.JWT_SECRET,{expiresIn:'7d'});
 
