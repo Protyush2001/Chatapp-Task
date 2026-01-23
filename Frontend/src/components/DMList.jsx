@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 
-export default function DMList({ users, userId, startDM, activeRoom }) {
+export default function DMList({ users, userId, startDM, activeRoom,  hasMore,loadMoreUsers }) {
   const [search, setSearch] = useState("");
 
 
@@ -63,6 +63,15 @@ export default function DMList({ users, userId, startDM, activeRoom }) {
           </div>
         );
       })}
+
+      {hasMore && (
+        <button
+          onClick={loadMoreUsers}
+          className="w-full mt-3 text-xs text-blue-500 hover:underline"
+        >
+          Load more users
+        </button>
+      )}
     </div>
   );
 }

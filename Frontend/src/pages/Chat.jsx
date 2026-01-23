@@ -23,6 +23,9 @@ export default function Chat() {
   const [showModal, setShowModal] = useState(false);
   const [roomName, setRoomName] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [page, setPage] = useState(1);
+const [hasMore, setHasMore] = useState(true);
+
 
  
   const [showChat, setShowChat] = useState(false);
@@ -58,16 +61,37 @@ export default function Chat() {
       .then((res) => setRooms(res.data));
   }, [user]);
 
-  useEffect(() => {
-    if (!user) return;
-    axiosInstance
-      .get("/api/users?page=1&limit=5", {
-        headers: { Authorization: localStorage.getItem("token") },
-      })
-      .then((res) => setUsers(res.data));
-  }, [user]);
+  // useEffect(() => {
+  //   if (!user) return;
+  //   axiosInstance
+  //     .get("/api/users?page=1&limit=5", {
+  //       headers: { Authorization: localStorage.getItem("token") },
+  //     })
+  //     .then((res) => setUsers(res.data));
+  // }, [user]);
 
+//
+useEffect(() => {
+  if (!user) return;
 
+  axiosInstance
+    .get(`/api/users?page=${page}&limit=5`, {
+      headers: { Authorization: localStorage.getItem("token") },
+    })
+    .then((res) => {
+      const { users: newUsers, pagination } = res.data;
+
+      if (page === 1) {
+        setUsers(newUsers);
+      } else {
+        setUsers(prev => [...prev, ...newUsers]);
+      }
+
+      setHasMore(pagination.hasMore);
+    })
+    .catch(err => console.log("User pagination error:", err));
+}, [user, page]);
+//
   useEffect(() => {
     if (!activeRoom) return;
     socket.emit("joinroom", activeRoom._id);
@@ -182,6 +206,8 @@ useEffect(() => {
           setShowModal={setShowModal}
           navigate={navigate}
           startDM={startDM}
+          hasMore={hasMore}
+          loadMoreUsers={() => setPage(prev => prev + 1)}
         />
       </div>
 
