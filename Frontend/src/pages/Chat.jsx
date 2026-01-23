@@ -61,7 +61,7 @@ export default function Chat() {
   useEffect(() => {
     if (!user) return;
     axiosInstance
-      .get("/api/users", {
+      .get("/api/users?page=1&limit=5", {
         headers: { Authorization: localStorage.getItem("token") },
       })
       .then((res) => setUsers(res.data));
