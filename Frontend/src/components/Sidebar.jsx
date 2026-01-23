@@ -13,7 +13,10 @@ export default function Sidebar({
   setActiveRoom,
   setShowModal,
   navigate,
-  startDM
+  startDM,
+  hasMore,
+  loadMoreUsers
+
 }) {
   const dispatch = useDispatch();
 
@@ -106,8 +109,8 @@ export default function Sidebar({
             setActiveRoom={setActiveRoom}
             userId={user._id}
             startDM={startDM}
-              hasMore
-              loadMoreUsers
+  hasMore={hasMore}
+  loadMoreUsers={loadMoreUsers}
           />
         </div>
       </div>
