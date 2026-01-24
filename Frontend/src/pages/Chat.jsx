@@ -262,7 +262,7 @@ useEffect(() => {
             sendMessage={sendMessage}
             socket={socket}
             activeRoom={activeRoom}
-            username={user?.name}
+            username={user?.username}
           />
         )}
       </div>
