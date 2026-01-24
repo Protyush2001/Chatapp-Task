@@ -74,7 +74,7 @@ export default function ChatHeader({ activeRoom, userId, typingUser }) {
           {/* 🔥 Typing indicator here */}
           {typingUser ? (
             <p className="text-xs text-green-600 italic">
-              typing...
+              typing..
             </p>
           ) : (
             <p className="text-xs text-gray-500">
