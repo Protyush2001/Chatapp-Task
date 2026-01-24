@@ -244,7 +244,7 @@ useEffect(() => {
           </button>
         </div>
 
-        <ChatHeader activeRoom={activeRoom} userId={userId} />
+        <ChatHeader activeRoom={activeRoom} userId={userId} typingUser={typingUser} />
 
         <Messages
           messages={messages}
