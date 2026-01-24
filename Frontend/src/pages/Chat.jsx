@@ -25,6 +25,8 @@ export default function Chat() {
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [page, setPage] = useState(1);
 const [hasMore, setHasMore] = useState(true);
+const [typingUser, setTypingUser] = useState("");
+
 
 
  
@@ -109,6 +111,22 @@ useEffect(() => {
       .then((res) => setMessages(res.data))
       .finally(() => setLoading(false));
   }, [activeRoom]);
+
+  useEffect(() => {
+  socket.on("userTyping", ({ username }) => {
+    setTypingUser(username);
+  });
+
+  socket.on("userStopTyping", () => {
+    setTypingUser("");
+  });
+
+  return () => {
+    socket.off("userTyping");
+    socket.off("userStopTyping");
+  };
+}, []);
+
 
  
 
@@ -234,6 +252,7 @@ useEffect(() => {
           userId={userId}
           loading={loading}
           messagesEndRef={messagesEndRef}
+          typingUser={typingUser}
         />
 
         {activeRoom && (
@@ -241,6 +260,9 @@ useEffect(() => {
             message={message}
             setMessage={setMessage}
             sendMessage={sendMessage}
+            socket={socket}
+            activeRoom={activeRoom}
+            username={user?.name}
           />
         )}
       </div>

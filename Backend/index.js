@@ -51,6 +51,13 @@ io.on("connection",(socket)=>{
         socket.join(roomId);
         console.log(`user joined room: ${roomId}`);
     });
+ socket.on("typing", ({ roomId, username }) => {
+    socket.to(roomId).emit("userTyping", { username });
+  });
+
+  socket.on("stopTyping", ({ roomId }) => {
+    socket.to(roomId).emit("userStopTyping");
+  });
     socket.on("sendMessage",(data)=>{
         const {roomId,message} = data;
         // socket.to(roomId).emit('receiveMessage',message);

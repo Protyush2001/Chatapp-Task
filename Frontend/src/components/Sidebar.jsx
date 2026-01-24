@@ -109,8 +109,8 @@ export default function Sidebar({
             setActiveRoom={setActiveRoom}
             userId={user._id}
             startDM={startDM}
-  hasMore={hasMore}
-  loadMoreUsers={loadMoreUsers}
+            hasMore={hasMore}
+            loadMoreUsers={loadMoreUsers}
           />
         </div>
       </div>
