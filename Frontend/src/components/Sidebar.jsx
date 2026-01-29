@@ -52,6 +52,7 @@ export default function Sidebar({
             <p className="font-semibold text-gray-900 truncate">
               {user.username}
             </p>
+            <h1>Welcome to chatty</h1>
           </div>
         </div>
 
